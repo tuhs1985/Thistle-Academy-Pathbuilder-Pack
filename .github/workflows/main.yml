@@ -63,4 +63,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: './Pathbuilder-Packs/*.json,'
           tag: ${{ github.event.release.tag_name }}
-          body: "README.md"
+          body: './README.md'
