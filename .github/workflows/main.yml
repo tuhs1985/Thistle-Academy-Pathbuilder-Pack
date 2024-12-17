@@ -24,5 +24,11 @@ jobs:
         uses: actions/checkout@v4
       - uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: "Pathbuilder-Packs/*.json"
+          tag: ${{ github.event.release.tag_name }}
           bodyFile: "README.md"
