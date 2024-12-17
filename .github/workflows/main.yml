@@ -1,0 +1,28 @@
+name: Create Module Files For GitHub Release
+on:
+  # Only run this workflow when a release is published.
+  # To modify this workflow when other events occur, see:
+  #   - https://docs.github.com/en/actions/using-workflows/triggering-a-workflow
+  #   - https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+  #   - https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+  #
+  # Note that some steps may depend on context variables that are only
+  # available for release events, so if you add other events, you may need to
+  # alter other parts of this workflow.
+  release:
+    types: [published]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "Pathbuilder-Packs/*.json"
+          bodyFile: "README.md"
